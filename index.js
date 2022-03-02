@@ -5,6 +5,7 @@ import cors from 'cors'
 import usersRouter from './routes/users.js'
 import productsRouter from './routes/products.js'
 import questionsRouter from './routes/questions.js'
+import ordersRouter from './routes/orders.js'
 
 mongoose.connect(process.env.DB_URL, () => {
   console.log('MondoDB Connected')
@@ -40,6 +41,7 @@ app.use((_, req, res, next) => {
 app.use('/users', usersRouter)
 app.use('/products', productsRouter)
 app.use('/questions', questionsRouter)
+app.use('/orders', ordersRouter)
 
 // 如果上面的路徑都不符合，會進到404頁面
 app.all('*', (req, res) => {

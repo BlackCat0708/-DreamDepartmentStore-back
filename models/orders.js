@@ -5,6 +5,10 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.ObjectId,
     ref: 'users'
   },
+  illustrator: {
+    type: mongoose.ObjectId,
+    ref: 'users'
+  },
   product: {
     type: mongoose.ObjectId,
     ref: 'products',
@@ -15,9 +19,28 @@ const orderSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  // 需求描述
+  description: {
+    type: String,
+    required: [true, '缺少描述']
+  },
+  // 參考圖
+  images: {
+    type: [String]
+  },
+  // 參考來源
+  source: {
+    type: String
+  },
+  // 接受狀態
+  accept: {
+    type: Boolean,
+    default: false
+  },
   // 取消狀態
   cancel: {
-    type: Boolean
+    type: Boolean,
+    default: false
   },
   // 取消原因
   reason: {
@@ -25,7 +48,12 @@ const orderSchema = new mongoose.Schema({
   },
   // 完成狀態
   finish: {
-    type: Boolean
+    type: Boolean,
+    default: false
+  },
+  // 匯款方式
+  payment: {
+    type: String
   },
   // 評論
   review: {
